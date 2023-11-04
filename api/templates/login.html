@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Login - My School App{% endblock %}
+
+{% block content %}
+
+<style>
+
+    /* CSS to style the login page */
+.login-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    text-align: left;
+}
+
+.login-form button {
+    margin-top: 10px;
+}
+
+/* Optional: You can customize the appearance of form elements (input fields, labels, etc.) here */
+
+</style>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p class="login-link">Don't have an account? <a href="{% url 'register' %}">Login here</a></p>
+
+</div>
+{% endblock %}
+
+
+

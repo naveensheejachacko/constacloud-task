@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Register - My School App{% endblock %}
+
+{% block content %}
+<style>
+
+
+    /* register.css */
+
+/* Style the registration container */
+.registration-container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Style the registration form header */
+.registration-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style the registration form elements */
+.registration-form {
+    text-align: left;
+}
+
+/* Style the registration form submit button */
+.registration-form button {
+    margin-top: 10px;
+    background-color: #007BFF; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Style the "Login here" link */
+.login-link {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.login-link a {
+    color: #007BFF; /* Link color */
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline; /* Underline link on hover */
+}
+
+</style>
+<div class="registration-container">
+    <h2>Register</h2>
+    <form method="post" class="registration-form">
+        {% csrf_token %}
+        <!-- Display individual form fields -->
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Username:</label>
+            {{ form.username }}
+            {% for error in form.username.errors %}
+                <p class="error-message">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.password1.id_for_label }}">Password:</label>
+            {{ form.password1 }}
+            {% for error in form.password1.errors %}
+                <p class="error-message">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+            {{ form.password2 }}
+            {% for error in form.password2.errors %}
+                <p class="error-message">{{ error }}</p>
+            {% endfor %}
+        </div>
+        <!-- Add similar blocks for other form fields -->
+        <button type="submit">Register</button>
+    </form>
+    <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+</div>
+
+{% endblock %}

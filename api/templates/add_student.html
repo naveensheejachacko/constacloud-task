@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+/* add_student.css */
+
+/* Style the container for the "Add Student" page */
+.add-student-container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    list-style: none;
+}
+
+/* Style the form */
+.add-student-form {
+    margin-top: 20px;
+}
+
+/* Style form elements */
+.add-student-form label {
+    display: block; /* Display labels on separate lines */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.add-student-form input[type="text"],
+.add-student-form input[type="file"],
+.add-student-form select { /* Style text fields, file input, and select (dropdown) fields */
+    width: 30%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style the image field */
+.image {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Style the submit button */
+.add-student-form button {
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Style the "Back to Student List" link */
+.back-link {
+    display: block;
+    margin-top: 20px;
+}
+
+.back-link a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+</style>
+
+<div class="add-student-container">
+    <h2>Add Student</h2>
+    <form method="post" enctype="multipart/form-data" class="add-student-form">
+        {% csrf_token %}
+
+<!-- Ensure that the value of the user field is set to the current username -->
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        
+        {{ form.roll_no.label_tag }}
+        {{ form.roll_no }}
+        
+
+        {{ form.class_grade.label_tag }}
+        {{ form.class_grade }}
+        <!-- Render each subject and score field without error messages -->
+        <div class="subject-field">
+            {{ form.subject1.label_tag }}
+            {{ form.subject1 }}
+            {{ form.score1 }}
+        </div>
+        
+        <div class="subject-field">
+            {{ form.subject2.label_tag }}
+            {{ form.subject2 }}
+            {{ form.score2 }}
+        </div>
+        
+        <div class="subject-field">
+            {{ form.subject3.label_tag }}
+            {{ form.subject3 }}
+            {{ form.score3 }}
+        </div>
+        
+        <div class="subject-field">
+            {{ form.subject4.label_tag }}
+            {{ form.subject4 }}
+            {{ form.score4 }}
+        </div>
+        
+        <div class="subject-field">
+            {{ form.subject5.label_tag }}
+            {{ form.subject5 }}
+            {{ form.score5 }}
+        </div>
+        
+        <!-- Add the image upload field -->
+        {{ form.photo.label_tag }}
+        {{ form.photo }}
+        
+
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+    <p class="back-link"><a href="{% url 'student_list' %}">Back to Student List</a></p>
+</div>
+{% endblock %}
